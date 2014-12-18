@@ -9,6 +9,7 @@ import com.seanharger.numbermunchers.application.view.ApplicationView;
 import com.seanharger.numbermunchers.application.view.IApplicationViewToModelAdapter;
 import com.seanharger.numbermunchers.game.model.IMunchersGameType;
 import com.seanharger.numbermunchers.game.model.IMunchersLevel;
+import com.seanharger.numbermunchers.game.model.character.IComputerCharacter;
 
 public class ApplicationController {
 
@@ -39,30 +40,7 @@ public class ApplicationController {
   
   private List<IMunchersGameType> loadGameTypes() {
     ArrayList<IMunchersGameType> gameTypes = new ArrayList<IMunchersGameType>();
-    gameTypes.add(new IMunchersGameType() {
-      
-      private List<IMunchersLevel> _testLevels = new ArrayList<IMunchersLevel>();
-      
-      {
-        _testLevels.add(new IMunchersLevel() {
-          @Override
-          public String toString() {
-            return "Test level";
-          }
-        });
-      } 
-      
-      @Override
-      public List<IMunchersLevel> getLevelOptions() {
-        return _testLevels;
-      }
-      
-      @Override
-      public String toString() {
-        return "Test game";
-      }
-      
-    });
+    
     return gameTypes;
   }
   

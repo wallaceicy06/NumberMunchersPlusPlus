@@ -3,6 +3,7 @@ package com.seanharger.numbermunchers.application.model;
 import java.util.List;
 
 import com.seanharger.numbermunchers.game.model.IMunchersGameType;
+import com.seanharger.numbermunchers.game.model.gametypes.TestGameType;
 
 public class ApplicationModel {
 
@@ -13,6 +14,7 @@ public class ApplicationModel {
   public ApplicationModel(List<IMunchersGameType> supportedGameTypes, IApplicationModelToViewAdapter view) {
     _view = view;
     _supportedGameTypes = supportedGameTypes;
+    _supportedGameTypes.add(new TestGameType());
   }
   
   public void start() {

@@ -1,5 +1,6 @@
 package com.seanharger.numbermunchers.game.controller;
 
-public interface IGameControllerToApplicationAdapter {
+import java.awt.Component;
 
+public interface IGameControllerToApplicationAdapter {
 }

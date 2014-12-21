@@ -1,6 +1,6 @@
 package com.seanharger.numbermunchers.application.view;
 
-public interface IApplicationViewToModelAdapter<TGameClass, TLevelClass> {
+public interface IApplicationViewToModelAdapter<TGameClass> {
 
-  public void onPlayPressed(TGameClass gameType, TLevelClass levelType);
+  public void onPlayPressed(TGameClass gameType);
 }

@@ -1,5 +1,6 @@
 package com.seanharger.numbermunchers.game.model.gametypes;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,23 +13,10 @@ import com.seanharger.numbermunchers.game.util.IFactory;
 public class TestGameType implements IMunchersGameType {
 
   private ArrayList<IFactory<IComputerCharacter>> _monsters;
-  private String[][] _boardTiles;
   
   public TestGameType() {
     _monsters = new ArrayList<IFactory<IComputerCharacter>>();
     _monsters.add(ReggieMonsterFactory.SINGLETON);
-    
-    _boardTiles = new String[5][6];
-    for (int i = 0; i < _boardTiles.length; i++) {
-      for (int j = 0; i < _boardTiles[0].length; j++) {
-        _boardTiles[i][j] = String.format("%d%d", i, j);
-      }
-    }
-  }
-  
-  @Override
-  public List<IMunchersLevel> getLevelOptions() {
-    return new ArrayList<IMunchersLevel>();
   }
 
   @Override
@@ -57,13 +45,18 @@ public class TestGameType implements IMunchersGameType {
   }
 
   @Override
-  public String[][] getBoardTiles() {
-    return _boardTiles;
+  public boolean isCorrectAnswer(int number) {
+    return true;
+  }
+  
+  @Override
+  public String toString() {
+    return "TestGame";
   }
 
   @Override
-  public boolean isCorrectAnswer(int x, int y) {
-    return true;
+  public Dimension getBoardDimensions() {
+    return new Dimension(6, 5);
   }
 
 }

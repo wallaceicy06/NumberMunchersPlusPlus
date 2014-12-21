@@ -27,21 +27,17 @@ public class ApplicationView extends JFrame {
 
   private static final long serialVersionUID = 1902245636356481077L;
 
-  private IApplicationViewToModelAdapter _model;
+  private IApplicationViewToModelAdapter<IMunchersGameType> _model;
 
   private final JPanel _contentPane = new JPanel();
   private final JPanel _panelControls = new JPanel();
   private final JPanel _panelGameType = new JPanel();
   private final JLabel _lblGameType = new JLabel("Game type");
-  private final JPanel _panelLevel = new JPanel();
-  private final JLabel _lblLevel = new JLabel("Level");
   private final JComboBox<IMunchersGameType> _cmbBoxGameType = new JComboBox<IMunchersGameType>();
-  private final JComboBox<IMunchersLevel> _cmbBoxLevel = new JComboBox<IMunchersLevel>();
   private final Component _horizontalStrut = Box.createHorizontalStrut(10);
-  private final Component _horizontalStrut_1 = Box.createHorizontalStrut(20);
   private final JButton _btnPlay = new JButton("Play");
 
-  public ApplicationView(IApplicationViewToModelAdapter model) {
+  public ApplicationView(IApplicationViewToModelAdapter<IMunchersGameType> model) {
     _model = model;
     initialize();
   }
@@ -71,35 +67,17 @@ public class ApplicationView extends JFrame {
 
     _lblGameType.setAlignmentX(Component.CENTER_ALIGNMENT);
     _panelGameType.add(_lblGameType);
-    _cmbBoxGameType.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        _cmbBoxLevel.removeAllItems();
-
-        if (_cmbBoxGameType.getSelectedItem() == null) {
-          return;
-        }
-
-        for (IMunchersLevel l : _cmbBoxGameType.getItemAt(_cmbBoxGameType.getSelectedIndex())
-            .getLevelOptions()) {
-          _cmbBoxLevel.addItem(l);
-        }
-
-      }
-    });
 
     _panelGameType.add(_cmbBoxGameType);
 
     _panelControls.add(_horizontalStrut);
-
-    _panelControls.add(_panelLevel);
-    _panelLevel.setLayout(new BoxLayout(_panelLevel, BoxLayout.Y_AXIS));
-
-    _lblLevel.setAlignmentX(Component.CENTER_ALIGNMENT);
-    _panelLevel.add(_lblLevel);
-
-    _panelLevel.add(_cmbBoxLevel);
-
-    _panelControls.add(_horizontalStrut_1);
+    _btnPlay.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        if (_cmbBoxGameType.getSelectedIndex() >= 0) {
+          _model.onPlayPressed(_cmbBoxGameType.getItemAt(_cmbBoxGameType.getSelectedIndex()));
+        }
+      }
+    });
 
     _panelControls.add(_btnPlay);
   }
